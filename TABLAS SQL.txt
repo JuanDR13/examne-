@@ -1,0 +1,91 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema DIEGO HERRERIA
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema DIEGO HERRERIA
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `DIEGO HERRERIA` DEFAULT CHARACTER SET utf8 ;
+USE `DIEGO HERRERIA` ;
+
+-- -----------------------------------------------------
+-- Table `DIEGO HERRERIA`.`PEDIDOS`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DIEGO HERRERIA`.`PEDIDOS` (
+  `idPEDIDOS` INT NOT NULL,
+  `NUM DE PEDIDOS` INT NOT NULL,
+  `IMPORTE` INT NOT NULL,
+  PRIMARY KEY (`idPEDIDOS`))
+ENGINE = InnoDB;
+insert into pedidos(2)
+insert into pedidos(155);
+delete from pedidos (155);
+-- -----------------------------------------------------
+-- Table `DIEGO HERRERIA`.`USUARIO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DIEGO HERRERIA`.`USUARIO` (
+  `idUSUARIO` INT NOT NULL,
+  `NOMBRE` VARCHAR(45) NULL,
+  PRIMARY KEY (`idUSUARIO`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DIEGO HERRERIA`.`CATEGORIA`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DIEGO HERRERIA`.`CATEGORIA` (
+  `idCATEGORIA` INT NOT NULL,
+  `NOMBRE` VARCHAR(45) NOT NULL,
+  `CALIBRE` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idCATEGORIA`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DIEGO HERRERIA`.`HERRAJES`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DIEGO HERRERIA`.`HERRAJES` (
+  `idHERRAJES` INT NOT NULL,
+  `NOMBRE` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idHERRAJES`),
+  CONSTRAINT `idCATEGORIA`
+    FOREIGN KEY (`idHERRAJES`)
+    REFERENCES `DIEGO HERRERIA`.`CATEGORIA` (`idCATEGORIA`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `DIEGO HERRERIA`.`HERRERIA DEIGO`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DIEGO HERRERIA`.`HERRERIA DEIGO` (
+  `id HERRERIA` INT NOT NULL,
+  PRIMARY KEY (`id HERRERIA`),
+  CONSTRAINT `idPEDIDOS`
+    FOREIGN KEY (`id HERRERIA`)
+    REFERENCES `DIEGO HERRERIA`.`PEDIDOS` (`idPEDIDOS`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `Id USUARIO`
+    FOREIGN KEY (`id HERRERIA`)
+    REFERENCES `DIEGO HERRERIA`.`USUARIO` (`idUSUARIO`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `idHERRAJES`
+    FOREIGN KEY (`id HERRERIA`)
+    REFERENCES `DIEGO HERRERIA`.`HERRAJES` (`idHERRAJES`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
